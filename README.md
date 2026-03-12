@@ -1,88 +1,80 @@
-# Distance Measuring System using HC-SR04 and ATmega32
-This project implements a distance measurement system using the HC-SR04 Ultrasonic Sensor and ATmega32 Microcontroller. 
-The measured distance is displayed on a 4x16 LCD. The system is designed with a layered architecture that includes drivers for GPIO, ICU, LCD, and Ultrasonic Sensor.
+# 📏 Distance Measuring System - HC-SR04 & ATmega32
 
-## Features
+## 📖 Overview
 
-### Ultrasonic Distance Measurement:
-Uses the HC-SR04 Ultrasonic Sensor to measure distances in centimeters.
+This project implements a **distance measurement system** using the **HC-SR04 Ultrasonic Sensor** and **ATmega32 Microcontroller**.  
+The measured distance is displayed on a **4x16 LCD**, providing a real-time, accurate reading of objects in centimeters.
 
-### LCD Display:
-Displays the measured distance on a 4x16 LCD.
+The system is built with a **layered architecture**, including drivers for GPIO, ICU, LCD, and Ultrasonic Sensor, making it modular and easy to understand for embedded systems learners.
 
-### ATmega32 Microcontroller:
-Runs the system at a clock frequency of 8 MHz.
+---
 
-### Layered Architecture:
-The project is implemented using a modular design with separate drivers for each component.
+## ⚙️ Features
 
-## System Architecture
-The system is organized based on a layered architecture model and includes the following drivers:
+- **Ultrasonic Distance Measurement**:
+  - Uses **HC-SR04 sensor** to measure distances in centimeters.
 
-### GPIO Driver:
-Controls the input and output pins, including those for the LCD and the ultrasonic sensor.
+- **LCD Display**:
+  - Shows the measured distance on a **4x16 LCD**.
 
-### ICU Driver:
-Handles the timing for ultrasonic sensor readings using the Input Capture Unit.
+- **ATmega32 Microcontroller**:
+  - Runs at a **clock frequency of 8 MHz**.
 
-### LCD Driver:
-Manages communication with the 4x16 LCD.
+- **Layered Architecture**:
+  - Modular design with separate drivers for **GPIO, ICU, LCD, and Ultrasonic Sensor**.
 
-### Ultrasonic Sensor Driver:
-Controls the HC-SR04 sensor to trigger pulses and measure the echo time to calculate distance.
+---
 
-## Components
+## 🏗 System Architecture
 
-### ATmega32 Microcontroller
+The system is organized using a **layered driver-based approach**:
 
-### HC-SR04 Ultrasonic Sensor
+- **GPIO Driver**: Manages input/output pins for LCD and ultrasonic sensor.
+- **ICU Driver**: Measures pulse duration from the HC-SR04 using the Input Capture Unit.
+- **LCD Driver**: Controls communication and updates the 4x16 LCD display.
+- **Ultrasonic Sensor Driver**: Triggers the sensor and processes echo signals to calculate distance.
 
-### 4x16 LCD
+---
 
-### GPIO Pins
+## 🛠 How It Works
 
-### ICU for pulse detection
+1. The **HC-SR04 sensor** is triggered by sending a pulse to the Trigger Pin.
+2. The sensor emits a sound pulse and waits for the echo to return.
+3. The **ICU** measures the time taken for the echo to return.
+4. The time is converted to **distance in centimeters**.
+5. The measured distance is displayed on the **4x16 LCD**.
 
-## How It Works
+---
 
-### 1. The HC-SR04 Ultrasonic Sensor is triggered by sending a pulse to the Trigger Pin.
+## 🔧 Driver Functions
 
-### 2. The sensor sends out a sound pulse and waits for the echo to return. The time taken for the echo to return is measured using the Input Capture Unit (ICU) of the ATmega32.
+The **Ultrasonic Sensor Driver** includes:
 
-### 3. The time duration is used to calculate the distance.
+- `Ultrasonic_init()` → Initializes the ICU and trigger pin.
+- `Ultrasonic_Trigger()` → Sends a trigger pulse to the HC-SR04.
+- `Ultrasonic_readDistance()` → Sends the trigger pulse and reads the distance.
+- `Ultrasonic_edgeProcessing()` → Callback function for ICU to process echo and calculate pulse width.
 
-### 4. The calculated distance is displayed on the 4x16 LCD.
+---
 
-## Functions
+## 📸 Screenshot
 
-### The Ultrasonic Driver contains the following functions:
+![Distance Measurement Simulation](image.png)
 
-#### Ultrasonic_init():
+---
 
-##### Initializes the ICU and sets up the trigger pin.
+## 🎥 Simulation Video
 
-#### Ultrasonic_Trigger():
+Watch the simulation on LinkedIn:  
+[Distance Measuring System Simulation Video](https://www.linkedin.com/posts/youssef-adel-a601641b1_embeddedsystems-atmega32-hal-activity-7121447025786667008-BNm0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADFSougBbplLvCFvoq2oVcM3uoEe_eK2zig)
 
-##### Sends a trigger pulse to the HC-SR04 sensor.
+---
 
-#### Ultrasonic_readDistance():
+## 📁 Components & Requirements
 
-##### Sends the trigger pulse and reads the distance using the ICU.
-
-#### Ultrasonic_edgeProcessing():
-
-##### Callback function called by the ICU to process the echo and calculate the pulse width.
-
-## Requirements
-
-### ATmega32 Microcontroller
-
-### HC-SR04 Ultrasonic Sensor
-
-### 4x16 LCD
-
-### C programming language for the firmware
-
-## License
-
-### This project is open-source
+- **ATmega32 Microcontroller**
+- **HC-SR04 Ultrasonic Sensor**
+- **4x16 LCD**
+- **GPIO Pins**
+- **ICU for pulse detection**
+- **C programming language** for firmware
